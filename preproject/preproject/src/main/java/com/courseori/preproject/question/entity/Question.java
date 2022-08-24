@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,14 +22,15 @@ public class Question {
     private Long questionId;
     private String title;
     private String body;
-    private List<String> tags;
-    @ManyToOne()
-    private User user;
+//    private List<String> tags = new ArrayList<>();
+//    @ManyToOne()
+//    private User user;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private int views;
     private int votes;
-    private List<Answer> answers;
+
+//    private List<Answer> answers = new ArrayList<>();
 
 
 
