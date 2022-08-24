@@ -6,12 +6,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/questions")
+/*@RequestMapping("/questions")*/
 public class QuestionController {
 
 
     @GetMapping("/")
-    @ResponseBody
     public String index(){
         return "hello world";
     }

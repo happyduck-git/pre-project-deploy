@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+/*@Entity
 @NoArgsConstructor
-@Getter
+@Getter*/
 public class User {
-    @Id
+/*    @Id*/
     private Long userId;
 }
