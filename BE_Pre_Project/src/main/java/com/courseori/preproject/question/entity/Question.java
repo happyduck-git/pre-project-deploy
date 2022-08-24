@@ -1,14 +1,11 @@
 package com.courseori.preproject.question.entity;
 
 import com.courseori.preproject.answer.entity.Answer;
-import com.courseori.preproject.user.entity.User;
+import com.courseori.preproject.user.entity.Users;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,18 +16,25 @@ import java.util.List;
 public class Question {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionId;
     private String title;
     private String body;
-//    private List<String> tags = new ArrayList<>();
-//    @ManyToOne()
-//    private User user;
+
+    @ElementCollection(targetClass = String.class) //수정해야 할 수도 있습니다.
+    private List<String> tags = new ArrayList<>();
+
+    private String tag;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private Users users;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private int views;
     private int votes;
 
-//    private List<Answer> answers = new ArrayList<>();
+    @OneToMany(mappedBy = "question")
+    private List<Answer> answers = new ArrayList<>();
 
 
 
