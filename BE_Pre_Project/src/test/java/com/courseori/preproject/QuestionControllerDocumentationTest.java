@@ -30,6 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
@@ -85,11 +86,11 @@ public class QuestionControllerDocumentationTest {
                             preprocessRequest(prettyPrint()),
                             preprocessResponse(prettyPrint()),
                             pathParameters(
-                                    Arrays.asList(parameterWithName("question-id").description("질문식별자 식별자 ID"))
+                                    Arrays.asList(parameterWithName("question-id").description("게시글 식별자"))
                             ),
                             responseFields(
                                     Arrays.asList(
-                                            fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문식별자 식별자"),
+                                            fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("게시글 식별자"),
                                             fieldWithPath("userId").type(JsonFieldType.NUMBER).description("회원 식별자"),
                                             fieldWithPath("title").type(JsonFieldType.STRING).description("타이틀"),
                                             fieldWithPath("body").type(JsonFieldType.STRING).description("내용"),
@@ -163,6 +164,32 @@ public class QuestionControllerDocumentationTest {
                                 )
                         ).andReturn();
     }
+
+    @Test
+    public void deleteQuestion() throws Exception {
+
+        //give
+        long questionId = 1L;
+        doNothing().when(questionService).deleteQuestion(Mockito.anyLong());
+        //when
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders
+                        .delete("/questions/{question-id}", questionId));
+
+        actions.andExpect(status().isNoContent())
+                .andDo(
+                        document(
+                                "delete-questions",
+                                preprocessRequest(prettyPrint()),
+                                preprocessResponse(prettyPrint()),
+                                pathParameters(
+                                        Arrays.asList(parameterWithName("question-id").description("게시글 식별자"))
+                                )
+                        )
+                );
+        //then
+    }
+
 }
 
 

@@ -37,6 +37,11 @@ public class QuestionService {
         return questionRepository.save(question);
     }
 
+    public void deleteQuestion(long questionId){
+        Question findQuestion = questionRepository.findById(questionId).orElseThrow();
+        questionRepository.delete(findQuestion);
+    }
+
 }
 
 

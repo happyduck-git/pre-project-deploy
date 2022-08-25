@@ -55,5 +55,13 @@ public class QuestionController {
         return new ResponseEntity<>(responses, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{question-id}")
+    public ResponseEntity deleteQuestion(
+            @PathVariable("question-id") @Positive long questionId){
+        questionService.deleteQuestion(questionId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 }
