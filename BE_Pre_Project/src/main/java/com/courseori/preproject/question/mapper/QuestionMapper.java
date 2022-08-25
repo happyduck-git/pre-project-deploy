@@ -13,8 +13,8 @@ public interface QuestionMapper {
 
     List<QuestionDto.Response> questionsToQuestionResponses(List<Question> questionList);
 
-    Question questionPostDtoToQuestion(QuestionDto.Post post);
-    Question questionPatchDtoTOQuestion(QuestionDto.Patch patch);
+/*    Question questionPostDtoToQuestion(QuestionDto.Post post);
+    Question questionPatchDtoTOQuestion(QuestionDto.Patch patch);*/
 
 
 }

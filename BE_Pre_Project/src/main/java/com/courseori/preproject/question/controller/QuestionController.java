@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -29,10 +30,17 @@ public class QuestionController {
     }
 
     @GetMapping("/{question-id}")
-    public ResponseEntity getQuestion(@PathVariable("question-id") long questionId){
+    public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId){
+
+
+
+        Question question = questionService.findQuestion(questionId);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponse(question);
+
         System.out.println("questionId = " + questionId);
 
-        return  new ResponseEntity<>(HttpStatus.OK);
+
+        return  new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="baddfd9e-dc47-4b6c-ae2d-6091b1d5ad2e" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/BE_Pre_Project/src/main/java/com/courseori/preproject/question/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BE_Pre_Project/src/main/java/com/courseori/preproject/question/controller/QuestionController.java" afterDir="false" />
-    </list>
+    <list default="true" id="4c3f23f5-73e1-4184-b2e3-c610044f00b2" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +19,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2DndST0jIBAECjHMxjafld1mL4w" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -28,7 +27,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/GloriousMen/Documents/Java/Codestates Preproject/seb39_pre_057/BE_Pre_Project"
+    "last_opened_file_path": "C:/Users/luxur/OneDrive/바탕 화면/seb39_pre_057/BE_Pre_Project"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
