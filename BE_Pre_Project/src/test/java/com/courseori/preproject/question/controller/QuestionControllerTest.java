@@ -76,7 +76,7 @@ class QuestionControllerTest {
 
         given(mapper.questionPostDtoToQuestion(Mockito.any(QuestionDto.Post.class))).willReturn(new Question());
         given(questionService.createQuestion(Mockito.any(Question.class))).willReturn(new Question());
-        given(mapper.questionToQuestionResponseDto(Mockito.any(Question.class))).willReturn(responseBody);
+        given(mapper.questionToQuestionResponse(Mockito.any(Question.class))).willReturn(responseBody);
 
         //when
         ResultActions actions =
@@ -144,7 +144,7 @@ class QuestionControllerTest {
 
         given(mapper.questionPatchDtoTOQuestion(Mockito.any(QuestionDto.Patch.class))).willReturn(new Question());
         given(questionService.updateQuestion(Mockito.any(Question.class))).willReturn(new Question());
-        given(mapper.questionToQuestionResponseDto(Mockito.any(Question.class))).willReturn(responseBody);
+        given(mapper.questionToQuestionResponse(Mockito.any(Question.class))).willReturn(responseBody);
         //when
 
         ResultActions actions =

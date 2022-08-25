@@ -57,12 +57,12 @@ public class QuestionController {
      @PostMapping
     public ResponseEntity postQuestion(@RequestBody QuestionDto.Post requestBody){
 
-        Question question = mapper.questionPostDtoToQuestion(requestBody);
+        Question question = questionMapper.questionPostDtoToQuestion(requestBody);
 
 
         Question postQuestion = questionService.createQuestion(question);
 
-        QuestionDto.Response response = mapper.questionToQuestionResponseDto(postQuestion);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponse(postQuestion);
 
 
         return new ResponseEntity(response, HttpStatus.CREATED);
@@ -73,10 +73,10 @@ public class QuestionController {
                                          @RequestBody QuestionDto.Patch requestBody){
         requestBody.setQuestionId(questionId);
 
-        Question question = questionService.updateQuestion(mapper.questionPatchDtoTOQuestion(requestBody));
+        Question question = questionService.updateQuestion(questionMapper.questionPatchDtoTOQuestion(requestBody));
 
 
-        return new ResponseEntity<>(mapper.questionToQuestionResponseDto(question),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(questionMapper.questionToQuestionResponse(question),HttpStatus.ACCEPTED);
     }
 
 

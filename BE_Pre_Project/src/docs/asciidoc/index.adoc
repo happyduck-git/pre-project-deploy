@@ -1,17 +1,29 @@
-= 스택오버플로우 카피 애플리케이션   // (1)
+= StackOverFlow Clone Application
 :sectnums:
 :toc: left
 :toclevels: 4
 :toc-title: Table of Contents
 :source-highlighter: prettify
 
-Kim kun hwi <overrainbow0315@Gmail.com>   // (2)
+CourseOri BE
+v1.0.0, 2022.04.08
 
-v1.0.0, 2022.04.08    // (3)
 
-// (4)
 ***
 == QuestionController
+
+=== 질문 전체 조회
+.curl-request
+include::{snippets}/get-questions/curl-request.adoc[]
+.http-request
+include::{snippets}/get-questions/http-request.adoc[]
+.request-parameters
+include::{snippets}/get-questions/request-parameters.adoc[]
+.response-body
+include::{snippets}/get-questions/response-body.adoc[]
+.response-fields
+include::{snippets}/get-questions/response-fields.adoc[]
+
 === 질문 등록
 .curl-request
 include::{snippets}/post-question/curl-request.adoc[]

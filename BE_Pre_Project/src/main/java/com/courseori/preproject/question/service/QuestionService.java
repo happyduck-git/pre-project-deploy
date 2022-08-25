@@ -18,6 +18,7 @@ import java.util.Optional;
 @Service
 public class QuestionService {
 
+    private QuestionRepository questionRepository;
 
     @Autowired
     public QuestionService(QuestionRepository questionRepository) {
@@ -33,16 +34,6 @@ public class QuestionService {
 
     public Page<Question> findQuestions(int page, int size) {
         return questionRepository.findAll(PageRequest.of(page, size, Sort.by("questionId").descending()));
-    }
-
-    public Question createQuestion(Question question) {
-        //logic ( 필요시)
-        return questionRepository.save(question);
-    }
-
-    public Question updateQuestion(Question question) {
-        //logic
-        return questionRepository.save(question);
     }
     
      public Question createQuestion(Question question){
