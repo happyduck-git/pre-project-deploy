@@ -101,24 +101,24 @@ class QuestionControllerTest {
                         preprocessResponse(prettyPrint()),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 식별자"),
+                                        fieldWithPath("userId").type(JsonFieldType.NUMBER).description("회원 식별자"),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("타이틀"),
-                                        fieldWithPath("body").type(JsonFieldType.STRING).description("바디"),
-                                        fieldWithPath("tagList").type(JsonFieldType.ARRAY).description("태그 리스트"),
+                                        fieldWithPath("body").type(JsonFieldType.STRING).description("내용"),
+                                        fieldWithPath("tagList").type(JsonFieldType.ARRAY).description("태그"),
                                         fieldWithPath("answerList").type(JsonFieldType.ARRAY).description("답변")
                                 )
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 식별자"),
-                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
+                                        fieldWithPath("userId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문식별자 식별자"),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("타이틀"),
-                                        fieldWithPath("body").type(JsonFieldType.STRING).description("바디"),
-                                        fieldWithPath("tagList").type(JsonFieldType.ARRAY).description("태그 리스트"),
-                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("생성일"),
-                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("수정일"),
-                                        fieldWithPath("views").type(JsonFieldType.NUMBER).description("뷰"),
-                                        fieldWithPath("votes").type(JsonFieldType.NUMBER).description("투표수"),
+                                        fieldWithPath("body").type(JsonFieldType.STRING).description("내용"),
+                                        fieldWithPath("tagList").type(JsonFieldType.ARRAY).description("태그"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("생성 일자"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
+                                        fieldWithPath("views").type(JsonFieldType.NUMBER).description("조회수"),
+                                        fieldWithPath("votes").type(JsonFieldType.NUMBER).description("공감수"),
                                         fieldWithPath("answerList").type(JsonFieldType.ARRAY).description("답변")
 
                                 )
@@ -164,32 +164,32 @@ class QuestionControllerTest {
                 .andExpect(jsonPath("$.title").value(patch.getTitle()))
                 .andExpect(jsonPath("$.body").value(patch.getBody()))
                 .andExpect(jsonPath("$.tagList").value(patch.getTagList()))
-                .andDo(document("patch-questions",
+                .andDo(document("patch-question",
                         getRequestPreprocessor(),
                         getResponsePreprocessor(),
                         pathParameters(
-                                parameterWithName("question-id").description("질문 식별자")
+                                parameterWithName("question-id").description("질문식별자 식별자 ID")
                         ),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 식별자").ignored(),
-                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별자").ignored(),
+                                        fieldWithPath("userId").type(JsonFieldType.NUMBER).description("회원 식별자").ignored(),
+                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문식별자 식별자").ignored(),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("타이틀").optional(),
-                                        fieldWithPath("body").type(JsonFieldType.STRING).description("바디").optional(),
-                                        fieldWithPath("tagList").type(JsonFieldType.ARRAY).description("태그 리스트")
+                                        fieldWithPath("body").type(JsonFieldType.STRING).description("내용").optional(),
+                                        fieldWithPath("tagList").type(JsonFieldType.ARRAY).description("태그")
                                 )
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 식별자"),
-                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
+                                        fieldWithPath("userId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문식별자 식별자"),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("타이틀"),
-                                        fieldWithPath("body").type(JsonFieldType.STRING).description("바디"),
-                                        fieldWithPath("tagList").type(JsonFieldType.ARRAY).description("태그 리스트"),
-                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("생성일"),
-                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("수정일"),
-                                        fieldWithPath("views").type(JsonFieldType.NUMBER).description("뷰"),
-                                        fieldWithPath("votes").type(JsonFieldType.NUMBER).description("투표수"),
+                                        fieldWithPath("body").type(JsonFieldType.STRING).description("내용"),
+                                        fieldWithPath("tagList").type(JsonFieldType.ARRAY).description("태그"),
+                                        fieldWithPath("createdAt").type(JsonFieldType.STRING).description("생성 일자"),
+                                        fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
+                                        fieldWithPath("views").type(JsonFieldType.NUMBER).description("조회수"),
+                                        fieldWithPath("votes").type(JsonFieldType.NUMBER).description("공감수"),
                                         fieldWithPath("answerList").type(JsonFieldType.ARRAY).description("답변")
                                 )
                         )

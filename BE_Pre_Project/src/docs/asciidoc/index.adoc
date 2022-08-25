@@ -1,4 +1,4 @@
-= 커피 주문 애플리케이션    // (1)
+= 스택오버플로우 카피 애플리케이션   // (1)
 :sectnums:
 :toc: left
 :toclevels: 4
@@ -28,18 +28,19 @@ include::{snippets}/post-question/http-response.adoc[]
 .response-fields
 include::{snippets}/post-question/response-fields.adoc[]
 
+
 === 질문 정보 수정
 .curl-request
 include::{snippets}/patch-question/curl-request.adoc[]
 
 .http-request
-include::{snippets}/patch-questionr/http-request.adoc[]
+include::{snippets}/patch-question/http-request.adoc[]
 
 .request-fields
-include::{snippets}/patch-questionr/request-fields.adoc[]
+include::{snippets}/patch-question/request-fields.adoc[]
 
 .http-response
-include::{snippets}/patch-questionr/http-response.adoc[]
+include::{snippets}/patch-question/http-response.adoc[]
 
 .response-fields
-include::{snippets}/patch-questionr/response-fields.adoc[]
+include::{snippets}/patch-question/response-fields.adoc[]

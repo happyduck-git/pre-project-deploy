@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-25T16:56:17+0900",
+    date = "2022-08-25T17:36:29+0900",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.15 (Azul Systems, Inc.)"
 )
 @Component
@@ -87,5 +87,19 @@ public class QuestionMapperImpl implements QuestionMapper {
         QuestionDto.Response response = new QuestionDto.Response( userId, questionId, title, body, tagList, createdAt, modifiedAt, views, votes, answerList );
 
         return response;
+    }
+
+    @Override
+    public List<QuestionDto.Response> questionsToQuestionResponseDtos(List<Question> question) {
+        if ( question == null ) {
+            return null;
+        }
+
+        List<QuestionDto.Response> list = new ArrayList<QuestionDto.Response>( question.size() );
+        for ( Question question1 : question ) {
+            list.add( questionToQuestionResponseDto( question1 ) );
+        }
+
+        return list;
     }
 }
