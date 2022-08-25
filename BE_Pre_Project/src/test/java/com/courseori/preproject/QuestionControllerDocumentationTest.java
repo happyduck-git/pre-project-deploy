@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -25,6 +26,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
@@ -33,8 +35,8 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(QuestionController.class)
@@ -53,7 +55,53 @@ public class QuestionControllerDocumentationTest {
     public void getQuestionTest() throws Exception {
 
         //given
+        long questionId = 1L;
+        QuestionDto.Response response = StubData.getSingleResultBody();
+
+
         given(questionService.findQuestion(Mockito.anyLong())).willReturn(new Question());
+        given(questionMapper.questionToQuestionResponse(Mockito.any(Question.class))).willReturn(response);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.get("/questions/{question-id}",questionId)
+                        .accept(MediaType.APPLICATION_JSON));
+
+        actions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.questionId").value(questionId))
+                .andExpect(jsonPath("$.userId").value(response.getUserId()))
+                .andExpect(jsonPath("$.title").value(response.getTitle()))
+                .andExpect(jsonPath("$.body").value(response.getBody()))
+                .andExpect(jsonPath("$.tagList").value(response.getTagList()))
+                //.andExpect(jsonPath("$.createdAt").value(response.getCreatedAt()))
+                //.andExpect(jsonPath("$.modifiedAt").value(response.getModifiedAt()))
+                .andExpect(jsonPath("$.views").value(response.getViews()))
+                .andExpect(jsonPath("$.votes").value(response.getVotes()))
+                .andExpect(jsonPath("$.answerList").value(response.getAnswerList()))
+
+                .andDo(
+                    document(
+                            "get-question",
+                            preprocessRequest(prettyPrint()),
+                            preprocessResponse(prettyPrint()),
+                            pathParameters(
+                                    Arrays.asList(parameterWithName("question-id").description("질문식별자 식별자 ID"))
+                            ),
+                            responseFields(
+                                    Arrays.asList(
+                                            fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문식별자 식별자"),
+                                            fieldWithPath("userId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                            fieldWithPath("title").type(JsonFieldType.STRING).description("타이틀"),
+                                            fieldWithPath("body").type(JsonFieldType.STRING).description("내용"),
+                                            fieldWithPath("tagList").type(JsonFieldType.ARRAY).description("태그"),
+                                            fieldWithPath("createdAt").type(JsonFieldType.STRING).description("생성 일자"),
+                                            fieldWithPath("modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
+                                            fieldWithPath("views").type(JsonFieldType.NUMBER).description("조회수"),
+                                            fieldWithPath("votes").type(JsonFieldType.NUMBER).description("공감수"),
+                                            fieldWithPath("answerList").type(JsonFieldType.ARRAY).description("답변")
+                                    )
+                            )
+                ));
 
     }
 

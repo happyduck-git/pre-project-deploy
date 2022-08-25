@@ -16,15 +16,18 @@ import java.util.List;
 public class StubData {
 
     public static Question getSingleResultQuestion() {
+        Users users = new Users();
+        Question question = new Question("Title1", "Body1", users, 0,0);
 
-
-
-        return null;
+        return question;
     }
 
     public static QuestionDto.Response getSingleResultBody() {
+        List<String> tagList = new ArrayList<>();
+        List<Answer> answers = new ArrayList<>();
 
-        return null;
+        QuestionDto.Response response = new QuestionDto.Response(1L,1L, "Title1", "Body1", tagList, LocalDateTime.now(), LocalDateTime.now(), 0, 0, answers);
+        return response;
     }
 
 
