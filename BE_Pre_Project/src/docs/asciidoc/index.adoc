@@ -1,0 +1,45 @@
+= 커피 주문 애플리케이션    // (1)
+:sectnums:
+:toc: left
+:toclevels: 4
+:toc-title: Table of Contents
+:source-highlighter: prettify
+
+Kim kun hwi <overrainbow0315@Gmail.com>   // (2)
+
+v1.0.0, 2022.04.08    // (3)
+
+// (4)
+***
+== QuestionController
+=== 질문 등록
+.curl-request
+include::{snippets}/post-question/curl-request.adoc[]
+
+.http-request
+include::{snippets}/post-question/http-request.adoc[]
+
+.request-fields
+include::{snippets}/post-question/request-fields.adoc[]
+
+.http-response
+include::{snippets}/post-question/http-response.adoc[]
+
+.response-fields
+include::{snippets}/post-question/response-fields.adoc[]
+
+=== 질문 정보 수정
+.curl-request
+include::{snippets}/patch-question/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-questionr/http-request.adoc[]
+
+.request-fields
+include::{snippets}/patch-questionr/request-fields.adoc[]
+
+.http-response
+include::{snippets}/patch-questionr/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-questionr/response-fields.adoc[]
