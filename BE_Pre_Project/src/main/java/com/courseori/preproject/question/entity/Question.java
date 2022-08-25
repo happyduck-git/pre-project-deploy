@@ -2,8 +2,10 @@ package com.courseori.preproject.question.entity;
 
 import com.courseori.preproject.answer.entity.Answer;
 import com.courseori.preproject.user.entity.Users;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,13 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
+@Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long questionId;
+    private long questionId;
+
     private String title;
     private String body;
 
@@ -42,4 +47,5 @@ public class Question {
         this.views = views;
         this.votes = votes;
     }
+
 }
