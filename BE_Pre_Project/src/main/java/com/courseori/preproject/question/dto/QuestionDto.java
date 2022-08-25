@@ -3,8 +3,10 @@ package com.courseori.preproject.question.dto;
 import com.courseori.preproject.answer.entity.Answer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -39,12 +41,14 @@ public class QuestionDto {
 
     }
 
-    @Getter
+
     @AllArgsConstructor
+    @Getter
     public static class Response {
 
-        private long userId;
         private long questionId;
+        private long userId;
+
         private String title;
         private String body;
         private List<String> tagList;

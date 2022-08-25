@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-25T17:36:29+0900",
-    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.15 (Azul Systems, Inc.)"
+
+    date = "2022-08-25T13:43:32+0900",
+    comments = "version: 1.5.1.Final, compiler: javac, environment: Java 11.0.15 (Azul Systems, Inc.)"
+
 )
 @Component
 public class QuestionMapperImpl implements QuestionMapper {
@@ -56,12 +58,17 @@ public class QuestionMapperImpl implements QuestionMapper {
 
     @Override
     public QuestionDto.Response questionToQuestionResponseDto(Question question) {
+
         if ( question == null ) {
             return null;
         }
 
         List<String> tagList = null;
+
         long questionId = 0L;
+
+        List<Answer> answerList = null;
+   
         String title = null;
         String body = null;
         LocalDateTime createdAt = null;
@@ -73,6 +80,7 @@ public class QuestionMapperImpl implements QuestionMapper {
         if ( list != null ) {
             tagList = new ArrayList<String>( list );
         }
+
         questionId = question.getQuestionId();
         title = question.getTitle();
         body = question.getBody();
@@ -80,6 +88,7 @@ public class QuestionMapperImpl implements QuestionMapper {
         modifiedAt = question.getModifiedAt();
         views = question.getViews();
         votes = question.getVotes();
+
 
         long userId = 0L;
         List<Answer> answerList = null;
@@ -90,14 +99,16 @@ public class QuestionMapperImpl implements QuestionMapper {
     }
 
     @Override
-    public List<QuestionDto.Response> questionsToQuestionResponseDtos(List<Question> question) {
-        if ( question == null ) {
+
+    public List<QuestionDto.Response> questionsToQuestionResponses(List<Question> questionList) {
+        if ( questionList == null ) {
             return null;
         }
 
-        List<QuestionDto.Response> list = new ArrayList<QuestionDto.Response>( question.size() );
-        for ( Question question1 : question ) {
-            list.add( questionToQuestionResponseDto( question1 ) );
+        List<QuestionDto.Response> list = new ArrayList<QuestionDto.Response>( questionList.size() );
+        for ( Question question : questionList ) {
+            list.add( questionToQuestionResponse( question ) );
+
         }
 
         return list;
