@@ -22,20 +22,24 @@ public class Question {
     private String body;
 
     @ElementCollection(targetClass = String.class) //수정해야 할 수도 있습니다.
-    private List<String> tags = new ArrayList<>();
+    private List<String> tagList = new ArrayList<>();
 
-    private String tag;
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private Users users;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime modifiedAt = LocalDateTime.now();
     private int views;
     private int votes;
 
     @OneToMany(mappedBy = "question")
-    private List<Answer> answers = new ArrayList<>();
+    private List<Answer> answerList = new ArrayList<>();
 
-
-
+    public Question(String title, String body, Users users, int views, int votes) {
+        this.title = title;
+        this.body = body;
+        this.users = users;
+        this.views = views;
+        this.votes = votes;
+    }
 }

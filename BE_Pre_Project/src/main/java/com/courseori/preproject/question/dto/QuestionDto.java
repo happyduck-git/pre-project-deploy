@@ -1,6 +1,8 @@
 package com.courseori.preproject.question.dto;
 
 import com.courseori.preproject.answer.entity.Answer;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,8 +28,11 @@ public class QuestionDto {
 
     }
 
+    @AllArgsConstructor
+    @Getter
     public static class Response {
 
+        private Long questionId;
         private Long userId;
         private String title;
         private String body;
