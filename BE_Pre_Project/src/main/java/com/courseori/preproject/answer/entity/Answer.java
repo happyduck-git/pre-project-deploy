@@ -25,7 +25,7 @@ public class Answer {
     private List<Question> question;
 
     private String body;
-    
+
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private Users users;
