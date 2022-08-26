@@ -43,6 +43,12 @@ public class QuestionService {
         return postQuestion;
     }
 
+    public void deleteQuestion(long questionId){
+        Question findQuestion = questionRepository.findById(questionId).orElseThrow();
+        questionRepository.delete(findQuestion);
+    }
+
+
     public Question updateQuestion(Question question){
         Question patchQuestion = findVerifiedQuestion(question.getQuestionId());
 
