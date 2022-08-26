@@ -1,14 +1,16 @@
 package com.courseori.preproject.user.entity;
 
+import com.courseori.preproject.answer.entity.Answer;
+import com.courseori.preproject.question.entity.Question;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -19,4 +21,14 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
+    private String username;
+    private String password;
+    LocalDateTime joinedAt = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "users")
+    List<Question> questionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "users")
+    List<Answer> answerList = new ArrayList<>();
+
 }
