@@ -9,6 +9,7 @@ import lombok.Setter;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Setter
@@ -27,4 +28,8 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private Users users;
+
+    private String body;
+
+    int votes;
 }
