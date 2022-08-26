@@ -17,19 +17,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Answer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long answerId;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Question.class)
     @JoinColumn(name = "QUESTION_ID")
-    private Question question;
+    private List<Question> question;
 
     private String body;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private Users users;
-
-    List<Comment> commentList;
 
     int votes;
 

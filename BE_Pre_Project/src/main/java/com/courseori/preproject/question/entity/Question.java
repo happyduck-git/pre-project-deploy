@@ -32,6 +32,7 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private Users users;
+
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime modifiedAt = LocalDateTime.now();
     private int views;

@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +21,14 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
-    String username;
-    String password;
-    LocalDateTime joinAt = LocalDateTime.now();
 
+    private String username;
+    private String password;
+    LocalDateTime joinedAt = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "users")
     List<Question> questionList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "users")
     List<Answer> answerList = new ArrayList<>();
 }
