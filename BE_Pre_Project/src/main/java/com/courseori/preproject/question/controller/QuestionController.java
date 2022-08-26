@@ -6,7 +6,6 @@ import com.courseori.preproject.question.mapper.QuestionMapper;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.courseori.preproject.question.repository.QuestionRepository;
 import com.courseori.preproject.question.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -24,19 +22,19 @@ import java.util.List;
 public class QuestionController {
 
     private QuestionService questionService;
-    private QuestionMapper questionMapper;
+    private QuestionMapper mapper;
 
     @Autowired
-    public QuestionController(QuestionService questionService, QuestionMapper questionMapper) {
+    public QuestionController(QuestionService questionService, QuestionMapper Mapper) {
         this.questionService = questionService;
-        this.questionMapper = questionMapper;
+        this.mapper = Mapper;
     }
 
     @GetMapping("/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId){
 
         Question question = questionService.findQuestion(questionId);
-        QuestionDto.Response response = questionMapper.questionToQuestionResponse(question);
+        QuestionDto.Response response = mapper.questionToQuestionResponse(question);
 
 
         return  new ResponseEntity<>(response, HttpStatus.OK);
@@ -50,11 +48,11 @@ public class QuestionController {
         Page<Question> questionPage = questionService.findQuestions(page - 1, size);
         List<Question> questions = questionPage.getContent();
 
-        List<QuestionDto.Response> responses = questionMapper.questionsToQuestionResponses(questions);
+        List<QuestionDto.Response> responses = mapper.questionsToQuestionResponses(questions);
         return new ResponseEntity<>(responses, HttpStatus.OK);
     }
     
-     @PostMapping
+    @PostMapping
     public ResponseEntity postQuestion(@RequestBody QuestionDto.Post requestBody){
 
         Question question = mapper.questionPostDtoToQuestion(requestBody);
@@ -62,7 +60,7 @@ public class QuestionController {
 
         Question postQuestion = questionService.createQuestion(question);
 
-        QuestionDto.Response response = mapper.questionToQuestionResponseDto(postQuestion);
+        QuestionDto.Response response = mapper.questionToQuestionResponse(postQuestion);
 
 
         return new ResponseEntity(response, HttpStatus.CREATED);
@@ -76,8 +74,18 @@ public class QuestionController {
         Question question = questionService.updateQuestion(mapper.questionPatchDtoTOQuestion(requestBody));
 
 
-        return new ResponseEntity<>(mapper.questionToQuestionResponseDto(question),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(mapper.questionToQuestionResponse(question),HttpStatus.ACCEPTED);
     }
+
+    @DeleteMapping("/{question-id}")
+    public ResponseEntity deleteQuestion(
+            @PathVariable("question-id") @Positive long questionId){
+        questionService.deleteQuestion(questionId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
 
 
 }

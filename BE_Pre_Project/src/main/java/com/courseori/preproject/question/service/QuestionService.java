@@ -20,30 +20,13 @@ public class QuestionService {
 
 
     @Autowired
+    private QuestionRepository questionRepository;
+
+    @Autowired
     public QuestionService(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
     }
 
-
-    public Question findQuestion(long questionId) {
-
-
-        return questionRepository.findById(questionId).orElseThrow(); //이후 null 처리 필요
-    }
-
-    public Page<Question> findQuestions(int page, int size) {
-        return questionRepository.findAll(PageRequest.of(page, size, Sort.by("questionId").descending()));
-    }
-
-    public Question createQuestion(Question question) {
-        //logic ( 필요시)
-        return questionRepository.save(question);
-    }
-
-    public Question updateQuestion(Question question) {
-        //logic
-        return questionRepository.save(question);
-    }
     
      public Question createQuestion(Question question){
 
@@ -65,6 +48,19 @@ public class QuestionService {
         return questionRepository.save(patchQuestion);
     }
 
+    public Question findQuestion(long questionId) {
+
+        return questionRepository.findById(questionId).orElseThrow(); //이후 null 처리 필요
+    }
+
+    public Page<Question> findQuestions(int page, int size) {
+        return questionRepository.findAll(PageRequest.of(page, size, Sort.by("questionId").descending()));
+    }
+
+    public void deleteQuestion(long questionId){
+        Question findQuestion = questionRepository.findById(questionId).orElseThrow();
+        questionRepository.delete(findQuestion);
+    }
 
 
     //Question 이 있는지 없다면 예외
@@ -76,6 +72,9 @@ public class QuestionService {
 
         return findQuestion;
     }
+
+
+
 
 
 }

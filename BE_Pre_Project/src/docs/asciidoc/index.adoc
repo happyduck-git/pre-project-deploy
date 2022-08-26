@@ -12,6 +12,21 @@ v1.0.0, 2022.04.08    // (3)
 // (4)
 ***
 == QuestionController
+
+=== 질문 전체 조회
+
+.curl-request
+include::{snippets}/get-questions/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-questions/http-request.adoc[]
+
+.http-response
+include::{snippets}/get-questions/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-questions/response-fields.adoc[]
+
 === 질문 등록
 .curl-request
 include::{snippets}/post-question/curl-request.adoc[]
@@ -44,3 +59,9 @@ include::{snippets}/patch-question/http-response.adoc[]
 
 .response-fields
 include::{snippets}/patch-question/response-fields.adoc[]
+
+
+
+
+
+
