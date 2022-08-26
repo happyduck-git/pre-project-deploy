@@ -11,9 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-25T16:45:15+0900",
-    comments = "version: 1.5.1.Final, compiler: javac, environment: Java 11.0.15 (Azul Systems, Inc.)"
-
+    date = "2022-08-26T13:41:03+0900",
+    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.15 (Azul Systems, Inc.)"
 )
 @Component
 public class QuestionMapperImpl implements QuestionMapper {
@@ -31,6 +30,10 @@ public class QuestionMapperImpl implements QuestionMapper {
         List<String> list = post.getTagList();
         if ( list != null ) {
             question.setTagList( new ArrayList<String>( list ) );
+        }
+        List<Answer> list1 = post.getAnswerList();
+        if ( list1 != null ) {
+            question.setAnswerList( new ArrayList<Answer>( list1 ) );
         }
 
         return question;
@@ -56,18 +59,14 @@ public class QuestionMapperImpl implements QuestionMapper {
     }
 
     @Override
-    public QuestionDto.Response questionToQuestionResponseDto(Question question) {
-
+    public QuestionDto.Response questionToQuestionResponse(Question question) {
         if ( question == null ) {
             return null;
         }
 
         List<String> tagList = null;
-
-        long questionId = 0L;
-
         List<Answer> answerList = null;
-   
+        long questionId = 0L;
         String title = null;
         String body = null;
         LocalDateTime createdAt = null;
@@ -79,7 +78,10 @@ public class QuestionMapperImpl implements QuestionMapper {
         if ( list != null ) {
             tagList = new ArrayList<String>( list );
         }
-
+        List<Answer> list1 = question.getAnswerList();
+        if ( list1 != null ) {
+            answerList = new ArrayList<Answer>( list1 );
+        }
         questionId = question.getQuestionId();
         title = question.getTitle();
         body = question.getBody();
@@ -88,17 +90,14 @@ public class QuestionMapperImpl implements QuestionMapper {
         views = question.getViews();
         votes = question.getVotes();
 
-
         long userId = 0L;
-        List<Answer> answerList = null;
 
-        QuestionDto.Response response = new QuestionDto.Response( userId, questionId, title, body, tagList, createdAt, modifiedAt, views, votes, answerList );
+        QuestionDto.Response response = new QuestionDto.Response( questionId, userId, title, body, tagList, createdAt, modifiedAt, views, votes, answerList );
 
         return response;
     }
 
     @Override
-
     public List<QuestionDto.Response> questionsToQuestionResponses(List<Question> questionList) {
         if ( questionList == null ) {
             return null;
@@ -107,7 +106,6 @@ public class QuestionMapperImpl implements QuestionMapper {
         List<QuestionDto.Response> list = new ArrayList<QuestionDto.Response>( questionList.size() );
         for ( Question question : questionList ) {
             list.add( questionToQuestionResponse( question ) );
-
         }
 
         return list;
