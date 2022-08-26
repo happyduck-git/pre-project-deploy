@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -34,5 +35,11 @@ public class Answer {
 
 
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private Users users;
 
+    private String body;
+
+    int votes;
 }
