@@ -1,12 +1,14 @@
 package com.courseori.preproject.answer.entity;
 
 import com.courseori.preproject.question.entity.Question;
+import com.courseori.preproject.user.entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Setter
@@ -18,9 +20,19 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long answerId;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Question.class)
     @JoinColumn(name = "QUESTION_ID")
-    private Question question;
+    private List<Question> question;
+
+    private String body;
+    
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private Users users;
+
+    int votes;
+
+
 
 
 }
