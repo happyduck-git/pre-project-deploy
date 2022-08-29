@@ -56,13 +56,11 @@ class QuestionControllerTest {
     @Autowired
     private Gson gson = new GsonBuilder().serializeNulls().create();
 
-
     @MockBean
     private QuestionService questionService;
 
     @MockBean
     private QuestionMapper mapper;
-
 
 
     @Test
@@ -75,8 +73,9 @@ class QuestionControllerTest {
         QuestionDto.Post post = new QuestionDto.Post(1L,"Title1","Body1",tagList,answerList);
 
         String content = gson.toJson(post);
+        LocalDateTime time = LocalDateTime.now();
 
-        QuestionDto.Response responseBody = new QuestionDto.Response(1L,1L, "Title1", "Body1", tagList, LocalDateTime.now(), LocalDateTime.now(), 0, 0,answerList);
+        QuestionDto.Response responseBody = new QuestionDto.Response(1L,1L, "Title1", "Body1", tagList, time, time, 0, 0,answerList);
 
         given(mapper.questionPostDtoToQuestion(Mockito.any(QuestionDto.Post.class))).willReturn(new Question());
         given(questionService.createQuestion(Mockito.any(Question.class))).willReturn(new Question());
