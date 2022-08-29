@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -38,12 +39,20 @@ public class QuestionService {
     public Question updateQuestion(Question question){
         Question patchQuestion = findVerifiedQuestion(question.getQuestionId());
 
-        Optional.ofNullable(patchQuestion.getUsers())
-                .ifPresent(users -> patchQuestion.setUsers(users));
-        Optional.ofNullable(patchQuestion.getTitle())
-                .ifPresent(title -> question.setTitle(title));
-        Optional.ofNullable(patchQuestion.getBody())
-                .ifPresent(body -> question.setBody(body));
+//        Question  = questionMock;
+
+        Optional.ofNullable(question.getTitle())
+                .ifPresent(title -> patchQuestion.setTitle(title));
+        Optional.ofNullable(question.getBody())
+                .ifPresent(body -> patchQuestion.setBody(body));
+        Optional.ofNullable(question.getModifiedAt())
+                .ifPresent(body -> patchQuestion.setModifiedAt(LocalDateTime.now()));
+
+//        Question patchQuestion = question;
+//        patchQuestion.getQuestionId();
+//        patchQuestion.setTitle(question.getTitle());
+//        patchQuestion.setBody(question.getBody());
+//        patchQuestion.setTagList(question.getTagList());
 
         return questionRepository.save(patchQuestion);
     }

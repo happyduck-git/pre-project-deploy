@@ -24,11 +24,17 @@ public class Users {
 
     private String username;
     private String password;
-    LocalDateTime joinedAt = LocalDateTime.now();
+
+    private LocalDateTime joinedAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "users")
     List<Question> questionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "users")
     List<Answer> answerList = new ArrayList<>();
+
+    public Users(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }
