@@ -3,10 +3,6 @@ package com.courseori.preproject.question.controller;
 import com.courseori.preproject.question.dto.QuestionDto;
 import com.courseori.preproject.question.entity.Question;
 import com.courseori.preproject.question.mapper.QuestionMapper;
-
-import org.springframework.web.bind.annotation.RequestBody;
-
-import com.courseori.preproject.question.repository.QuestionRepository;
 import com.courseori.preproject.question.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -54,11 +49,10 @@ public class QuestionController {
         return new ResponseEntity<>(responses, HttpStatus.OK);
     }
     
-     @PostMapping
-    public ResponseEntity postQuestion(@RequestBody QuestionDto.Post requestBody){
+    @PostMapping
+    public ResponseEntity postQuestion(@RequestBody QuestionDto.Post requestBody) {
 
         Question question = questionMapper.questionPostDtoToQuestion(requestBody);
-
 
         Question postQuestion = questionService.createQuestion(question);
 
@@ -71,12 +65,21 @@ public class QuestionController {
     @PatchMapping("/{question-id}")
     public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
                                          @RequestBody QuestionDto.Patch requestBody){
+
         requestBody.setQuestionId(questionId);
+
+        Question mappedQuestion = questionMapper.questionPatchDtoTOQuestion(requestBody);
+       
+
+        Question savedQuestion = questionService.updateQuestion(mappedQuestion);
+
+
+        QuestionDto.Response response = questionMapper.questionToQuestionResponse(savedQuestion);
+
 
         Question question = questionService.updateQuestion(questionMapper.questionPatchDtoTOQuestion(requestBody));
 
-
-        return new ResponseEntity<>(questionMapper.questionToQuestionResponse(question),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(questionMapper.questionToQuestionResponse(question), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{question-id}")
