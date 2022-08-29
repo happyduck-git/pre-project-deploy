@@ -34,8 +34,8 @@ public class Question {
     private Users users;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime modifiedAt = LocalDateTime.now();
-    private int views;
-    private int votes;
+    private int views = 0;
+    private int votes = 0;
 
     @OneToMany(mappedBy = "question")
     private List<Answer> answerList = new ArrayList<>();
@@ -48,4 +48,12 @@ public class Question {
         this.votes = votes;
     }
 
+    @Override
+    public String toString() {
+        return "Question{" +
+                "questionId=" + questionId +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                '}';
+    }
 }
