@@ -3,7 +3,7 @@ package com.courseori.preproject.helper;
 import com.courseori.preproject.answer.entity.Answer;
 import com.courseori.preproject.question.dto.QuestionDto;
 import com.courseori.preproject.question.entity.Question;
-import com.courseori.preproject.user.entity.Users;
+import com.courseori.preproject.users.entity.Users;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;

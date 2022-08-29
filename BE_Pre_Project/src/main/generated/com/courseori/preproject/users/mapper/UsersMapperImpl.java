@@ -1,23 +1,21 @@
-package com.courseori.preproject.user.mapper;
+package com.courseori.preproject.users.mapper;
 
-import com.courseori.preproject.user.dto.UserDto;
-import com.courseori.preproject.user.entity.Users;
+import com.courseori.preproject.users.dto.UserDto;
+import com.courseori.preproject.users.entity.Users;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-29T15:47:14+0900",
+    date = "2022-08-29T16:34:47+0900",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.15 (Azul Systems, Inc.)"
 )
 @Component
-public class UserMapperImpl implements UserMapper {
+public class UsersMapperImpl implements UsersMapper {
 
     @Override
-    public Users userPostDtoToUser(UserDto.Post post) {
+    public Users usersPostDtoToUser(UserDto.Post post) {
         if ( post == null ) {
             return null;
         }
@@ -47,19 +45,5 @@ public class UserMapperImpl implements UserMapper {
         UserDto.Response response = new UserDto.Response( userId, username, joinedAt );
 
         return response;
-    }
-
-    @Override
-    public List<UserDto.Response> usersToUserResponses(List<Users> users) {
-        if ( users == null ) {
-            return null;
-        }
-
-        List<UserDto.Response> list = new ArrayList<UserDto.Response>( users.size() );
-        for ( Users users1 : users ) {
-            list.add( userToUserResponse( users1 ) );
-        }
-
-        return list;
     }
 }

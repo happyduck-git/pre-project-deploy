@@ -1,4 +1,4 @@
-package com.courseori.preproject.user.entity;
+package com.courseori.preproject.users.entity;
 
 import com.courseori.preproject.answer.entity.Answer;
 import com.courseori.preproject.question.entity.Question;

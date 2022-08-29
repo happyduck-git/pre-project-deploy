@@ -1,4 +1,4 @@
-package com.courseori.preproject.user.dto;
+package com.courseori.preproject.users.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

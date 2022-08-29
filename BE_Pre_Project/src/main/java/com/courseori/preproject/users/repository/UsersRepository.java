@@ -1,7 +1,6 @@
-package com.courseori.preproject.user.repository;
+package com.courseori.preproject.users.repository;
 
-import com.courseori.preproject.question.entity.Question;
-import com.courseori.preproject.user.entity.Users;
+import com.courseori.preproject.users.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

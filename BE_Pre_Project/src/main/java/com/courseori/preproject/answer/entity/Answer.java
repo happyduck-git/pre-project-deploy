@@ -1,14 +1,13 @@
 package com.courseori.preproject.answer.entity;
 
 import com.courseori.preproject.question.entity.Question;
-import com.courseori.preproject.user.entity.Users;
+import com.courseori.preproject.users.entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.xml.stream.events.Comment;
 import java.util.List;
 
 @Entity

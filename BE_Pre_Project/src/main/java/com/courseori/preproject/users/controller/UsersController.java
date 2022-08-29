@@ -1,9 +1,9 @@
-package com.courseori.preproject.user.controller;
+package com.courseori.preproject.users.controller;
 
-import com.courseori.preproject.user.dto.UserDto;
-import com.courseori.preproject.user.entity.Users;
-import com.courseori.preproject.user.mapper.UserMapper;
-import com.courseori.preproject.user.service.UserService;
+import com.courseori.preproject.users.dto.UserDto;
+import com.courseori.preproject.users.entity.Users;
+import com.courseori.preproject.users.mapper.UsersMapper;
+import com.courseori.preproject.users.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,24 +14,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class UsersController {
 
     @Autowired
-    private UserService userService;
+    private UsersService usersService;
 
-    private UserMapper mapper;
+    @Autowired
+    private UsersMapper mapper;
 
-    public UserController(UserService userService, UserMapper mapper) {
-        this.userService = userService;
+    public UsersController(UsersService usersService, UsersMapper mapper) {
+        this.usersService = usersService;
         this.mapper = mapper;
     }
 
     @PostMapping
     public ResponseEntity postUser(@RequestBody UserDto.Post responseBody){
 
-        Users users = mapper.userPostDtoToUser(responseBody);
+        Users users = mapper.usersPostDtoToUser(responseBody);
 
-        Users postUser = userService.createUser(users);
+        Users postUser = usersService.createUser(users);
 
         UserDto.Response response = mapper.userToUserResponse(postUser);
 

@@ -1,18 +1,18 @@
-package com.courseori.preproject.user.service;
+package com.courseori.preproject.users.service;
 
-import com.courseori.preproject.user.entity.Users;
+import com.courseori.preproject.users.entity.Users;
+import com.courseori.preproject.users.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.courseori.preproject.user.repository.UsersRepository;
 
 
 @Service
-public class UserService {
+public class UsersService {
 
     @Autowired
     private UsersRepository usersRepository;
 
-    public UserService(UsersRepository usersRepository) {
+    public UsersService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 
