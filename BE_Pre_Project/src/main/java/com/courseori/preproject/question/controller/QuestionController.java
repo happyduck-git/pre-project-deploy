@@ -69,13 +69,13 @@ public class QuestionController {
         requestBody.setQuestionId(questionId);
 
         Question mappedQuestion = questionMapper.questionPatchDtoTOQuestion(requestBody);
-        System.out.println("Mapped question: " + mappedQuestion);
+       
 
         Question savedQuestion = questionService.updateQuestion(mappedQuestion);
-        System.out.println("Saved question: " + savedQuestion);
+
 
         QuestionDto.Response response = questionMapper.questionToQuestionResponse(savedQuestion);
-        System.out.println("Dto.response: " + response);
+
 
         Question question = questionService.updateQuestion(questionMapper.questionPatchDtoTOQuestion(requestBody));
 
