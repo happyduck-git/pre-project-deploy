@@ -79,6 +79,7 @@ public class QuestionController {
 
         Question question = questionService.updateQuestion(questionMapper.questionPatchDtoTOQuestion(requestBody));
 
+
         return new ResponseEntity<>(questionMapper.questionToQuestionResponse(question), HttpStatus.ACCEPTED);
     }
 
@@ -88,6 +89,7 @@ public class QuestionController {
         questionService.deleteQuestion(questionId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 
 

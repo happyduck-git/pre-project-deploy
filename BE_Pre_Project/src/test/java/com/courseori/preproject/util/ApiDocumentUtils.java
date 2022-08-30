@@ -1,4 +1,4 @@
-package com.courseori.preproject.question.controller;
+package com.courseori.preproject.util;
 
 import org.springframework.restdocs.operation.preprocess.OperationRequestPreprocessor;
 import org.springframework.restdocs.operation.preprocess.OperationResponsePreprocessor;
