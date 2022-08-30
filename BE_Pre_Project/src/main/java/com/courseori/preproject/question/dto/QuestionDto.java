@@ -4,10 +4,8 @@ import com.courseori.preproject.answer.entity.Answer;
 import com.courseori.preproject.users.entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,6 +23,13 @@ public class QuestionDto {
         private String body;
         private List<String> tagList;
         private List<Answer> answerList;
+
+
+        public Users getUsers() {
+            Users user = new Users();
+            user.setUserId(userId);
+            return user;
+        }
 
 
 
@@ -63,6 +68,11 @@ public class QuestionDto {
         private int views;
         private int votes;
         private List<Answer> answerList;
+
+        public void setUsers(Users user) {
+            this.userId = user.getUserId();
+        }
+
 
         @Override
         public String toString() {
