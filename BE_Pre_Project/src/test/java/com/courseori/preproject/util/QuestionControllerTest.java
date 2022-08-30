@@ -31,8 +31,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.courseori.preproject.question.controller.ApiDocumentUtils.getRequestPreprocessor;
-import static com.courseori.preproject.question.controller.ApiDocumentUtils.getResponsePreprocessor;
+import static com.courseori.preproject.util.ApiDocumentUtils.getRequestPreprocessor;
+import static com.courseori.preproject.util.ApiDocumentUtils.getResponsePreprocessor;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;

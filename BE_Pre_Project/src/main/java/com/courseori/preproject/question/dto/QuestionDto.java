@@ -1,6 +1,7 @@
 package com.courseori.preproject.question.dto;
 
 import com.courseori.preproject.answer.entity.Answer;
+import com.courseori.preproject.users.entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -26,6 +27,8 @@ public class QuestionDto {
         private List<Answer> answerList;
 
 
+
+
     }
 
     @Getter
@@ -41,6 +44,7 @@ public class QuestionDto {
         private List<String> tagList;
 
     }
+
 
 
     @AllArgsConstructor
