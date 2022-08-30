@@ -1,7 +1,7 @@
 package com.courseori.preproject.question.entity;
 
 import com.courseori.preproject.answer.entity.Answer;
-import com.courseori.preproject.user.entity.Users;
+import com.courseori.preproject.users.entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +32,7 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private Users users;
+
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime modifiedAt = LocalDateTime.now();
     private int views;
