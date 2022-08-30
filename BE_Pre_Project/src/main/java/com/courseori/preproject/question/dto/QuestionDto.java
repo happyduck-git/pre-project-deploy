@@ -32,8 +32,6 @@ public class QuestionDto {
         }
 
 
-
-
     }
 
     @Getter
