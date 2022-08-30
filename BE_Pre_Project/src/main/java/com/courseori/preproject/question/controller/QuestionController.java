@@ -77,6 +77,7 @@ public class QuestionController {
 
 
         return new ResponseEntity<>(questionMapper.questionToQuestionResponse(question),HttpStatus.ACCEPTED);
+
     }
 
     @DeleteMapping("/{question-id}")
@@ -85,6 +86,7 @@ public class QuestionController {
         questionService.deleteQuestion(questionId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 
 
