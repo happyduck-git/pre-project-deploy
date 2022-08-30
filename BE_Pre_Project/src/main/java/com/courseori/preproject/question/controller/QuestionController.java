@@ -37,12 +37,24 @@ public class QuestionController {
         return  new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    /* 전체 조회 original 메서드
 
     @GetMapping
     public ResponseEntity getQuestions(@Positive @RequestParam int page,
                                        @Positive @RequestParam int size) {
 
         Page<Question> questionPage = questionService.findQuestions(page - 1, size);
+        List<Question> questions = questionPage.getContent();
+
+        List<QuestionDto.Response> responses = questionMapper.questionsToQuestionResponses(questions);
+        return new ResponseEntity<>(responses, HttpStatus.OK);
+    }
+     */
+
+    @GetMapping
+    public ResponseEntity getQuestions() {
+
+        Page<Question> questionPage = questionService.findQuestions(0, 10);
         List<Question> questions = questionPage.getContent();
 
         List<QuestionDto.Response> responses = questionMapper.questionsToQuestionResponses(questions);

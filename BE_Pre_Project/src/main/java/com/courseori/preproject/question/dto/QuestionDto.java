@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,8 +20,11 @@ public class QuestionDto {
     @NoArgsConstructor
     public static class Post {
 
+        @NotBlank
         private long userId;
+        @NotBlank
         private String title;
+        @NotBlank
         private String body;
         private List<String> tagList;
         private List<Answer> answerList;
@@ -32,8 +37,6 @@ public class QuestionDto {
         }
 
 
-
-
     }
 
     @Getter
@@ -43,9 +46,13 @@ public class QuestionDto {
     public static class Patch {
 
         private long userId;
+        @NotBlank
         private long questionId;
+        @Nullable
         private String title;
+        @Nullable
         private String body;
+        @Nullable
         private List<String> tagList;
 
     }
