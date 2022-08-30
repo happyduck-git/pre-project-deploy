@@ -2,16 +2,13 @@ package com.courseori.preproject.question.service;
 
 import com.courseori.preproject.question.entity.Question;
 import com.courseori.preproject.question.repository.QuestionRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -50,14 +47,20 @@ public class QuestionService {
 
 
     public Question updateQuestion(Question question){
+
         Question patchQuestion = findVerifiedQuestion(question.getQuestionId());
 
-        Optional.ofNullable(patchQuestion.getUsers())
-                .ifPresent(users -> patchQuestion.setUsers(users));
-        Optional.ofNullable(patchQuestion.getTitle())
-                .ifPresent(title -> question.setTitle(title));
-        Optional.ofNullable(patchQuestion.getBody())
-                .ifPresent(body -> question.setBody(body));
+        Optional.ofNullable(question.getUsers())
+                .ifPresent(users -> patchQuestion.setUsers(users)); //ofNullable 필요?
+        Optional.ofNullable(question.getTitle())
+                .ifPresent(title -> patchQuestion.setTitle(title));
+        Optional.ofNullable(question.getBody())
+                .ifPresent(body -> patchQuestion.setBody(body));
+        Optional.ofNullable(question.getTagList())
+                .ifPresent(tags -> patchQuestion.setTagList(tags));
+
+        //수정된 시간 반영
+        patchQuestion.setModifiedAt(LocalDateTime.now());
 
         return questionRepository.save(patchQuestion);
     }

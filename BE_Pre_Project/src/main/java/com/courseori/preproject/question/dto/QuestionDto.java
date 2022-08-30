@@ -25,12 +25,13 @@ public class QuestionDto {
         private List<String> tagList;
         private List<Answer> answerList;
 
+
     }
 
     @Getter
     @Setter
     @AllArgsConstructor
-    @NoArgsConstructor
+//    @NoArgsConstructor
     public static class Patch {
 
         private long userId;
@@ -43,6 +44,7 @@ public class QuestionDto {
 
 
     @AllArgsConstructor
+    @Setter
     @Getter
     public static class Response {
 
@@ -58,6 +60,15 @@ public class QuestionDto {
         private int votes;
         private List<Answer> answerList;
 
+        @Override
+        public String toString() {
+            return "Response{" +
+                    "questionId=" + questionId +
+                    ", userId=" + userId +
+                    ", title='" + title + '\'' +
+                    ", body='" + body + '\'' +
+                    '}';
+        }
     }
 
 }

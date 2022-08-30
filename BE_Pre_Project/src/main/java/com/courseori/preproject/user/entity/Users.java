@@ -30,4 +30,5 @@ public class Users {
 
     @OneToMany(mappedBy = "users")
     List<Answer> answerList = new ArrayList<>();
+
 }

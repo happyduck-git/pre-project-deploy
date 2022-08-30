@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,17 +23,17 @@ public class Answer {
 
     @ManyToOne(targetEntity = Question.class)
     @JoinColumn(name = "QUESTION_ID")
-    private List<Question> question;
+    private Question question;
 
     private String body;
+
+    @ElementCollection(targetClass = String.class) //수정해야 할 수도 있습니다.
+    private List<String> commentList = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private Users users;
 
     int votes;
-
-
-
 
 }
