@@ -17,7 +17,7 @@ permissions:
   contents: read
   
 env:
-  S3_BUCKET_NAME: pre-preject-057
+  S3_BUCKET_NAME: pre-preject-57
 
 jobs:
   build:
